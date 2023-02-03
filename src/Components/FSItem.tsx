@@ -142,6 +142,11 @@ function FSItem({ item, openAddModal, openDeleteModal, parentIDs }: Props) {
             <Movie />
           </StyledTypeIcon>
           <StyledListItemText primary={item.name} />
+          <StyledСorrectionIcon
+            onClick={(e) => handleDeleteModal(e, item.id, parentIDs)}
+          >
+            <Delete />
+          </StyledСorrectionIcon>
         </StyledListItemButton>
       )}
     </>
