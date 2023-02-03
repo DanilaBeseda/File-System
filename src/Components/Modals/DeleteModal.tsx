@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import { Delete, Close } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { Stack } from "@mui/system";
 
 import { CurrentItem } from "../../types";
 
 import {
+  StyledCloseIcon,
   StyledHeader,
   StyledHeaderTitle,
   StyledMain,
@@ -73,16 +74,16 @@ const StyledMainDeleteIcon = styled(Delete)`
 type Props = {
   currentItem: CurrentItem;
   deleteItem: (currentItem: CurrentItem) => void;
-  undelete: () => void;
+  cancel: () => void;
 };
 
-function DeleteModal({ currentItem, deleteItem, undelete }: Props) {
+function DeleteModal({ currentItem, deleteItem, cancel }: Props) {
   function handleDeleteButton() {
     deleteItem(currentItem);
   }
 
-  function handleCancelButoon() {
-    undelete();
+  function handleCancel() {
+    cancel();
   }
 
   return (
@@ -90,7 +91,7 @@ function DeleteModal({ currentItem, deleteItem, undelete }: Props) {
       <StyledHeader direction="row">
         <StyledHeaderDeleteIcon />
         <StyledHeaderTitle>Delete sequence</StyledHeaderTitle>
-        <Close />
+        <StyledCloseIcon onClick={handleCancel} />
       </StyledHeader>
 
       <StyledMain>
@@ -102,9 +103,7 @@ function DeleteModal({ currentItem, deleteItem, undelete }: Props) {
           Are you sure you want to continue?
         </StyledDescription>
         <StyledButtonContainer direction="row">
-          <StyledCancelButton onClick={handleCancelButoon}>
-            Cancel
-          </StyledCancelButton>
+          <StyledCancelButton onClick={handleCancel}>Cancel</StyledCancelButton>
           <StyledDeleteButton onClick={handleDeleteButton}>
             <StyledMainDeleteIcon /> Delete
           </StyledDeleteButton>

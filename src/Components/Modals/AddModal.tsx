@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import { AddBox, Close } from "@mui/icons-material";
+import { AddBox } from "@mui/icons-material";
 import { Stack } from "@mui/system";
 import styled from "@emotion/styled";
 
@@ -11,6 +11,7 @@ import {
   StyledHeader,
   StyledHeaderTitle,
   StyledMain,
+  StyledCloseIcon,
 } from "./styles";
 
 const StyledHeaderAddBox = styled(AddBox)`
@@ -68,9 +69,10 @@ const StyledMainAddBox = styled(AddBox)`
 type Props = {
   addItem: (name: string, currentItem: CurrentItem) => void;
   currentItem: CurrentItem;
+  cancel: () => void;
 };
 
-function AddModal({ addItem, currentItem }: Props) {
+function AddModal({ addItem, currentItem, cancel }: Props) {
   const [inputValue, setInputValue] = useState("");
 
   function handleInput(
@@ -83,12 +85,16 @@ function AddModal({ addItem, currentItem }: Props) {
     addItem(inputValue, currentItem);
   }
 
+  function handleCancel() {
+    cancel();
+  }
+
   return (
     <StyledWrap>
       <StyledHeader direction="row">
         <StyledHeaderAddBox />
         <StyledHeaderTitle>Add shot</StyledHeaderTitle>
-        <Close />
+        <StyledCloseIcon onClick={handleCancel} />
       </StyledHeader>
 
       <StyledMain>

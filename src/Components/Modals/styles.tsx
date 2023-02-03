@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Close } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
 
@@ -31,4 +32,8 @@ export const StyledHeaderTitle = styled.p`
 
 export const StyledMain = styled(Box)`
   padding: 12px;
+`;
+
+export const StyledCloseIcon = styled(Close)`
+  cursor: pointer;
 `;

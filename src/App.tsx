@@ -80,7 +80,11 @@ function App() {
 
       <FSModal open={addModalIsOpen} closeModal={callbacks.closeAddModal}>
         {currentItem && (
-          <AddModal addItem={callbacks.addItem} currentItem={currentItem} />
+          <AddModal
+            addItem={callbacks.addItem}
+            currentItem={currentItem}
+            cancel={callbacks.closeAddModal}
+          />
         )}
       </FSModal>
 
@@ -89,7 +93,7 @@ function App() {
           <DeleteModal
             currentItem={currentItem}
             deleteItem={callbacks.deleteItem}
-            undelete={callbacks.closeDeleteModal}
+            cancel={callbacks.closeDeleteModal}
           />
         )}
       </FSModal>
