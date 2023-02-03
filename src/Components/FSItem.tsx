@@ -70,7 +70,7 @@ const StyledAddBox = styled(AddBox)`
 type Props = {
   item: Item;
   openAddModal: (id: number, parentIDs: number[]) => void;
-  openDeleteModal: (id: number, parentIDs: number[]) => void;
+  openDeleteModal: (id: number, parentIDs: number[], name: string) => void;
   parentIDs: number[];
 };
 
@@ -101,7 +101,7 @@ function FSItem({ item, openAddModal, openDeleteModal, parentIDs }: Props) {
     parentIDs: number[]
   ) {
     e.stopPropagation();
-    openDeleteModal(id, parentIDs);
+    openDeleteModal(id, parentIDs, item.name);
   }
 
   return (

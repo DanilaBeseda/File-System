@@ -54,10 +54,13 @@ function App() {
       setAddModalIsOpen(true);
       setCurrentItem({ id, parentIDs });
     }, []),
-    openDeleteModal: useCallback((id: number, parentIDs: number[]) => {
-      setDeleteModalIsOpen(true);
-      setCurrentItem({ id, parentIDs });
-    }, []),
+    openDeleteModal: useCallback(
+      (id: number, parentIDs: number[], name: string) => {
+        setDeleteModalIsOpen(true);
+        setCurrentItem({ id, parentIDs, name });
+      },
+      []
+    ),
     closeAddModal: useCallback(() => {
       setAddModalIsOpen(false);
       setCurrentItem(null);

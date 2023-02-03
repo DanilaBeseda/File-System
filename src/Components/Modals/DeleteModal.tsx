@@ -71,6 +71,10 @@ const StyledMainDeleteIcon = styled(Delete)`
   margin-right: 5px;
 `;
 
+const StyledStrong = styled.strong`
+  text-transform: uppercase;
+`;
+
 type Props = {
   currentItem: CurrentItem;
   deleteItem: (currentItem: CurrentItem) => void;
@@ -96,8 +100,8 @@ function DeleteModal({ currentItem, deleteItem, cancel }: Props) {
 
       <StyledMain>
         <StyledDescription>
-          The sequence <strong>INFC</strong> and related objects will be
-          permanently deleted and cannot be restored.
+          The sequence <StyledStrong>{currentItem.name}</StyledStrong> and
+          related objects will be permanently deleted and cannot be restored.
         </StyledDescription>
         <StyledDescription>
           Are you sure you want to continue?

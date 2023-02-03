@@ -1,6 +1,7 @@
 export type CurrentItem = {
   id: number;
   parentIDs: number[];
+  name?: string;
 };
 
 export type Item = {
