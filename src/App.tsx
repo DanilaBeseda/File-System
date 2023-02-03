@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { Drawer } from "@mui/material";
 
 import FSList from "./Components/FSList";
 import AddModal from "./Components/Modals/AddModal";
@@ -11,6 +10,7 @@ import createNewTreeAndAddNode from "./utils/createNewTreeAndAddNode";
 import createNewTreeAndDeleteNode from "./utils/createNewTreeAndDeleteNode";
 
 import { CurrentItem } from "./types";
+import Sidebar from "./Components/Sidebar";
 
 function App() {
   const [data, setData] = useState(fetchedData);
@@ -68,10 +68,8 @@ function App() {
     }, []),
   };
 
-  console.log(data);
-
   return (
-    <Drawer anchor={"left"} open={true} hideBackdrop={true}>
+    <Sidebar anchor="left" open={true} hideBackdrop={true}>
       {data && (
         <FSList
           items={data}
@@ -95,7 +93,7 @@ function App() {
           />
         )}
       </FSModal>
-    </Drawer>
+    </Sidebar>
   );
 }
 

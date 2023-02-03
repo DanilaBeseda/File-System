@@ -7,15 +7,65 @@ import {
 } from "@mui/material";
 import {
   Folder,
+  Movie,
   KeyboardArrowDown,
   KeyboardArrowRight,
-  Add,
+  AddBox,
   Delete,
 } from "@mui/icons-material";
+import styled from "@emotion/styled";
 
 import FSList from "./FSList";
 
 import { Item } from "../types";
+
+const StyledListItemButton = styled(ListItemButton)`
+  :hover {
+    background-color: #2e2e2e;
+  }
+`;
+
+const StyledListItemText = styled(ListItemText)`
+  & span {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #cecece;
+  }
+`;
+
+const StyledTypeIcon = styled(ListItemIcon)`
+  color: #ffebb7;
+  min-width: 12px;
+  margin-right: 8px;
+  .MuiSvgIcon-root {
+    font-size: 14px;
+  }
+`;
+
+const StyledСorrectionIcon = styled(ListItemIcon)`
+  color: #b7b7b7;
+  min-width: 12px;
+  .MuiSvgIcon-root {
+    font-size: 12px;
+  }
+`;
+
+const StyledArrowIcon = styled(ListItemIcon)`
+  min-width: 6px;
+  .MuiSvgIcon-root {
+    color: #cecece;
+    font-size: 12px;
+  }
+`;
+
+const StyledAddBox = styled(AddBox)`
+  margin-right: 3px;
+`;
 
 type Props = {
   item: Item;
@@ -53,25 +103,30 @@ function FSItem({ item, openAddModal, openDeleteModal, parentIDs }: Props) {
     <>
       {item.type === "folder" ? (
         <>
-          <ListItemButton onClick={handleClick}>
-            {open ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
-            <ListItemIcon>
+          <StyledListItemButton
+            onClick={handleClick}
+            sx={{ pl: `${16 * (parentIDs.length + 1)}px` }}
+          >
+            <StyledArrowIcon>
+              {open ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
+            </StyledArrowIcon>
+            <StyledTypeIcon>
               <Folder />
-            </ListItemIcon>
-            <ListItemText primary={item.name} />
-            <ListItemIcon
+            </StyledTypeIcon>
+            <StyledListItemText primary={item.name} />
+            <StyledСorrectionIcon
               onClick={(e) => handleAddModal(e, item.id, parentIDs)}
             >
-              <Add />
-            </ListItemIcon>
+              <StyledAddBox />
+            </StyledСorrectionIcon>
             {!!parentIDs.length && (
-              <ListItemIcon
+              <StyledСorrectionIcon
                 onClick={(e) => handleDeleteModal(e, item.id, parentIDs)}
               >
                 <Delete />
-              </ListItemIcon>
+              </StyledСorrectionIcon>
             )}
-          </ListItemButton>
+          </StyledListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <FSList
               items={item.children}
@@ -82,10 +137,12 @@ function FSItem({ item, openAddModal, openDeleteModal, parentIDs }: Props) {
           </Collapse>
         </>
       ) : (
-        <ListItemButton>
-          <ListItemIcon>{}</ListItemIcon>
-          <ListItemText primary={item.name} />
-        </ListItemButton>
+        <StyledListItemButton sx={{ pl: `${16 * (parentIDs.length + 2)}px` }}>
+          <StyledTypeIcon>
+            <Movie />
+          </StyledTypeIcon>
+          <StyledListItemText primary={item.name} />
+        </StyledListItemButton>
       )}
     </>
   );

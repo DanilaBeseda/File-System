@@ -12,12 +12,7 @@ function FSModal({ open, closeModal, children }: Props) {
   }
 
   return (
-    <Modal
-      open={open}
-      onClose={closeHandler}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={open} onClose={closeHandler}>
       <>{children}</>
     </Modal>
   );

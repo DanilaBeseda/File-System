@@ -1,19 +1,69 @@
 import { useState } from "react";
-import { Typography, Box, TextField, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
+import { AddBox, Close } from "@mui/icons-material";
+import { Stack } from "@mui/system";
+import styled from "@emotion/styled";
 
 import { CurrentItem } from "../../types";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import {
+  StyledWrap,
+  StyledHeader,
+  StyledHeaderTitle,
+  StyledMain,
+} from "./styles";
+
+const StyledHeaderAddBox = styled(AddBox)`
+  color: #b7b7b7;
+  padding-right: 5px;
+`;
+
+const StyledDescription = styled.p`
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  color: #cecece;
+  margin-bottom: 10px;
+`;
+
+const StyledTextField = styled(TextField)`
+  flex: 1;
+  margin-right: 6px;
+  .MuiInputBase-input {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 16px;
+    background-color: #232323;
+    color: #e2e2e2;
+    max-height: 25px;
+    padding: 4px 0 4px 18px;
+  }
+
+  fieldset {
+    border-color: #333;
+    border-radius: 3px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  text-transform: none;
+  background-color: #00ffbe;
+  color: #353535;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  border-radius: 3px;
+  padding: 0, 8.5px;
+  :hover {
+    color: #e2e2e2;
+  }
+`;
+
+const StyledMainAddBox = styled(AddBox)`
+  font-size: 12px;
+  margin-right: 5px;
+`;
 
 type Props = {
   addItem: (name: string, currentItem: CurrentItem) => void;
@@ -34,19 +84,24 @@ function AddModal({ addItem, currentItem }: Props) {
   }
 
   return (
-    <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Text in a modal
-      </Typography>
+    <StyledWrap>
+      <StyledHeader direction="row">
+        <StyledHeaderAddBox />
+        <StyledHeaderTitle>Add shot</StyledHeaderTitle>
+        <Close />
+      </StyledHeader>
 
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </Typography>
-      <Box>
-        <TextField value={inputValue} onChange={handleInput} />
-        <Button onClick={handleAddButton}>Add shot</Button>
-      </Box>
-    </Box>
+      <StyledMain>
+        <StyledDescription>Enter the name:</StyledDescription>
+        <Stack direction="row">
+          <StyledTextField value={inputValue} onChange={handleInput} />
+          <StyledButton onClick={handleAddButton}>
+            <StyledMainAddBox />
+            Add shot
+          </StyledButton>
+        </Stack>
+      </StyledMain>
+    </StyledWrap>
   );
 }
 

@@ -1,18 +1,74 @@
-import { Typography, Box, Button } from "@mui/material";
+import styled from "@emotion/styled";
+import { Delete, Close } from "@mui/icons-material";
+import { Button } from "@mui/material";
+import { Stack } from "@mui/system";
 
 import { CurrentItem } from "../../types";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import {
+  StyledHeader,
+  StyledHeaderTitle,
+  StyledMain,
+  StyledWrap,
+} from "./styles";
+
+const StyledHeaderDeleteIcon = styled(Delete)`
+  color: #b7b7b7;
+  padding-right: 5px;
+`;
+
+const StyledDescription = styled.p`
+  margin: 0;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  color: #cecece;
+  margin-bottom: 5px;
+`;
+
+const StyledButtonContainer = styled(Stack)`
+  padding-top: 12px;
+`;
+
+const StyledCancelButton = styled(Button)`
+  flex: 1;
+  text-transform: none;
+  background-color: #3d3d3d;
+  color: #bfbfbf;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  border-radius: 3px;
+  padding: 5, 0px;
+  height: 25px;
+  margin-right: 7px;
+  :hover {
+    color: #e2e2e2;
+  }
+`;
+
+const StyledDeleteButton = styled(Button)`
+  flex: 1;
+  text-transform: none;
+  background-color: #ff005c;
+  color: #353535;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  border-radius: 3px;
+  padding: 5, 0px;
+  height: 25px;
+  :hover {
+    color: #e2e2e2;
+  }
+`;
+
+const StyledMainDeleteIcon = styled(Delete)`
+  font-size: 12px;
+  margin-right: 5px;
+`;
 
 type Props = {
   currentItem: CurrentItem;
@@ -30,16 +86,31 @@ function DeleteModal({ currentItem, deleteItem, undelete }: Props) {
   }
 
   return (
-    <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Text in a modal
-      </Typography>
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </Typography>
-      <Button onClick={handleDeleteButton}>Delete</Button>
-      <Button onClick={handleCancelButoon}>Cancel</Button>
-    </Box>
+    <StyledWrap>
+      <StyledHeader direction="row">
+        <StyledHeaderDeleteIcon />
+        <StyledHeaderTitle>Delete sequence</StyledHeaderTitle>
+        <Close />
+      </StyledHeader>
+
+      <StyledMain>
+        <StyledDescription>
+          The sequence <strong>INFC</strong> and related objects will be
+          permanently deleted and cannot be restored.
+        </StyledDescription>
+        <StyledDescription>
+          Are you sure you want to continue?
+        </StyledDescription>
+        <StyledButtonContainer direction="row">
+          <StyledCancelButton onClick={handleCancelButoon}>
+            Cancel
+          </StyledCancelButton>
+          <StyledDeleteButton onClick={handleDeleteButton}>
+            <StyledMainDeleteIcon /> Delete
+          </StyledDeleteButton>
+        </StyledButtonContainer>
+      </StyledMain>
+    </StyledWrap>
   );
 }
 
