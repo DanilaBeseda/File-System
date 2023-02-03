@@ -1,5 +1,10 @@
 import { Item } from "../types";
 
+/**
+ * ParentIDs хранит id всех родителей
+ *
+ * Функция созадёт новое дерево и удаляет элемент по id
+ */
 export default function createNewTreeAndDeleteNode(
   data: Item[],
   id: number,

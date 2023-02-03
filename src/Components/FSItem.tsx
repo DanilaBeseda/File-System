@@ -74,6 +74,11 @@ type Props = {
   parentIDs: number[];
 };
 
+/**
+ * parentIDs хранит id всех родителей [id1,id2, ... , idn], благодаря чему,
+ * за линейное время можно найти узел в дереве,
+ * который нужно удалить или в который нужно что-то добавить
+ */
 function FSItem({ item, openAddModal, openDeleteModal, parentIDs }: Props) {
   const [open, setOpen] = useState(false);
 

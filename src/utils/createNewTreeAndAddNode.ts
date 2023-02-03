@@ -1,6 +1,11 @@
 import randomID from "./randomID";
 import { Item, newNode } from "../types";
 
+/**
+ * ParentIDs хранит id всех родителей
+ *
+ * Функция созадёт новое дерево и добавляет новый элемент в папку по её id
+ */
 export default function createNewTreeAndAddNode(
   data: Item[],
   name: string,
