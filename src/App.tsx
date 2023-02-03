@@ -4,13 +4,13 @@ import FSList from "./Components/FSList";
 import AddModal from "./Components/Modals/AddModal";
 import DeleteModal from "./Components/Modals/DeleteModal";
 import FSModal from "./Components/FSModal";
+import Sidebar from "./Components/Sidebar";
 
-import { data as fetchedData } from "./bd";
+import { data as fetchedData } from "./db";
 import createNewTreeAndAddNode from "./utils/createNewTreeAndAddNode";
 import createNewTreeAndDeleteNode from "./utils/createNewTreeAndDeleteNode";
 
 import { CurrentItem } from "./types";
-import Sidebar from "./Components/Sidebar";
 
 function App() {
   const [data, setData] = useState(fetchedData);

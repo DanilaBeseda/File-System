@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Close } from "@mui/icons-material";
-import { Stack } from "@mui/material";
-import { Box } from "@mui/system";
+import { Stack, Box } from "@mui/material";
 
 export const StyledWrap = styled(Box)`
   position: absolute;
